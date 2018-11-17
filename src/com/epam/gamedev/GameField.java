@@ -2,7 +2,7 @@ package com.epam.gamedev;
 
 public class GameField {
     private char[][] field;
-    int currentRow, currentCol;  // the current seed's row and column
+    int currentRow, currentCol;  // the current row and column
 
     public GameField() {
         field = new char[][]{
@@ -11,6 +11,10 @@ public class GameField {
                 {'-', '-', '-'}
         };
         printField();
+    }
+
+    public char[][] getField() {
+        return field;
     }
 
     void printField() {
@@ -31,38 +35,38 @@ public class GameField {
 
     }
 
-    boolean checkForWinner(char[][] field, boolean isCurrentX) {
-        for (int i = 0; i < 3; i++) {
-            // горизонталь / вертикаль
+    boolean checkForWinner(boolean isCurrentX) {
+        for (int i = 0; i < Game.COLS; i++) {
+            // checking horizontal / vertical
             if (((field[i][0] == field[i][1] && field[i][0] == field[i][2]) ||
                     (field[0][i] == field[1][i] && field[0][i] == field[2][i])) && field[i][i] != '-') {
-                if (isCurrentX) {
-                    System.out.println("'X' won!");
-                    return false;
-                } else {
-                    System.out.println("'O' won!");
-                    return false;
-                }
+                System.out.println("Player " + (isCurrentX ? "'X'" : "'O'") + " won!");
+                return false;
             }
+        }
+        if (((field[0][0] == field[1][1] && field[0][0] == field[2][2]) && field[0][0] != '-' ||
+                (field[0][2] == field[1][1] && field[0][2] == field[2][0])) && field[0][2] != '-') {
+            System.out.println("Player " + (isCurrentX ? "'X'" : "'O'") + " won!");
+            return false;
         }
         return true;
     }
 
-    public char[][] getField() {
-        return field;
-    }
-//    //check diag
-//    boolean checkDiagonal(char[][]field,boolean isCurrent) {
-//        if (x == y) {
+    //check diag
+//    boolean checkDiagonal(boolean isCurrentX) {
+//        if (currentCol == currentRow) {
 //            //we're on a diagonal
 //            for (int i = 0; i < 3; i++) {
-//                if (field[i][i] == '-')
+//                if (field[i][i] == '-') {
 //                    break;
-//                if (i == 3 - 1) {
-//                    //report win for s
+//                }
+//                else {
+//                    System.out.println("Player " + (isCurrentX ? "'X'" : "'O'") + " won!");
+//                    return false;
 //                }
 //            }
 //        }
+//        return true;
 //    }
 //
 //    //check anti diag (thanks rampion)

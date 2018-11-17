@@ -20,7 +20,7 @@ public class Game {
             field.updateField(isCurrentX);
             field.printField();
 
-            gameNotFinish = field.checkForWinner(field.getField(), isCurrentX);
+            gameNotFinish = field.checkForWinner(isCurrentX);
             isCurrentX = !isCurrentX;
         }
     }
