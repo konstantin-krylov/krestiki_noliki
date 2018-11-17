@@ -1,7 +1,7 @@
 package com.epam.gamedev;
 
 public class GameField {
-    public static final int ROWS = 3, COLS = 3; // number of rows and columns
+    public static final int ROWS = 3, COLS = ROWS; // number of rows and columns
 
     private char[][] field;
     int currentRow, currentCol;  // the current row and column
@@ -39,7 +39,7 @@ public class GameField {
     }
 
     boolean checkForWinner(boolean isCurrentX) {
-        for (int i = 0; i < COLS; i++) {
+        for (int i = 0; i < ROWS; i++) {
             // checking horizontal / vertical
             if (((field[i][0] == field[i][1] && field[i][0] == field[i][2]) ||
                     (field[0][i] == field[1][i] && field[0][i] == field[2][i])) && field[i][i] != '-') {
@@ -47,10 +47,20 @@ public class GameField {
                 return false;
             }
         }
-        if (((field[0][0] == field[1][1] && field[0][0] == field[2][2]) && field[0][0] != '-' ||
-                (field[0][2] == field[1][1] && field[0][2] == field[2][0])) && field[0][2] != '-') {
-            System.out.println("Player " + (isCurrentX ? "'X'" : "'O'") + " won!");
-            return false;
+//        if (((field[0][0] == field[1][1] && field[0][0] == field[2][2]) && field[0][0] != '-' ||
+//                (field[0][2] == field[1][1] && field[0][2] == field[2][0])) && field[0][2] != '-') {
+//            System.out.println("Player " + (isCurrentX ? "'X'" : "'O'") + " won!");
+//            return false;
+//        }
+
+        if (currentCol == currentRow) {
+            //we're on a diagonal
+            for (int i = 0; i < ROWS; i++) {
+                if (field[i][i] == '-') {
+                    break;
+                }
+
+            }
         }
         return true;
     }

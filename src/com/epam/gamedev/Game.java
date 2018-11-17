@@ -22,6 +22,10 @@ public class Game {
             gameNotFinish = field.checkForWinner(isCurrentX);
             isCurrentX = !isCurrentX;
         }
+        boolean oneMoreTime = restart();
+        if (oneMoreTime) {
+            new Game();
+        }
     }
 
 
@@ -44,6 +48,22 @@ public class Game {
                         + ") is not valid. Try again...");
             }
         } while (!validInput);  // repeat until input is valid
+    }
+
+    boolean restart() {
+        System.out.println("One more time? If 'YES' enter 1, if 'NO' enter 2");
+        int answer = scanner.nextInt();
+        switch (answer) {
+            case 1:
+                System.out.println("Lets Go");
+                return true;
+            case 2:
+                System.out.println("Bye!");
+                return false;
+            default:
+                System.out.println("Enter 1 or 2");
+                return false;
+        }
     }
 }
 
