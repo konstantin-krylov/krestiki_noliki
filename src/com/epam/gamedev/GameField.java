@@ -1,15 +1,18 @@
 package com.epam.gamedev;
 
 public class GameField {
+    public static final int ROWS = 3, COLS = 3; // number of rows and columns
+
     private char[][] field;
     int currentRow, currentCol;  // the current row and column
 
     public GameField() {
-        field = new char[][]{
-                {'-', '-', '-'},
-                {'-', '-', '-'},
-                {'-', '-', '-'}
-        };
+        field = new char[ROWS][COLS];
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                field[i][j] = '-';
+            }
+        }
         printField();
     }
 
@@ -36,7 +39,7 @@ public class GameField {
     }
 
     boolean checkForWinner(boolean isCurrentX) {
-        for (int i = 0; i < Game.COLS; i++) {
+        for (int i = 0; i < COLS; i++) {
             // checking horizontal / vertical
             if (((field[i][0] == field[i][1] && field[i][0] == field[i][2]) ||
                     (field[0][i] == field[1][i] && field[0][i] == field[2][i])) && field[i][i] != '-') {

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Game {
 
-    public static final int ROWS = 3, COLS = 3; // number of rows and columns
 
     private GameField field;
     private boolean isCurrentX = true;
@@ -36,7 +35,7 @@ public class Game {
             }
             int row = scanner.nextInt() - 1;  // array index starts at 0 instead of 1
             int col = scanner.nextInt() - 1;
-            if (row >= 0 && row < ROWS && col >= 0 && col < COLS && field.getField()[row][col] == '-') {
+            if (row >= 0 && row < GameField.ROWS && col >= 0 && col < GameField.COLS && field.getField()[row][col] == '-') {
                 field.currentRow = row;
                 field.currentCol = col;
                 validInput = true;  // input okay, exit loop
